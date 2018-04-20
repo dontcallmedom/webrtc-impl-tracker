@@ -27,7 +27,13 @@ fetch(shortname + ".json")
         const firefoxTd = document.createElement("td");
         const safariTd = document.createElement("td");
 
-        memberTd.textContent = member;
+        const nameSpan = document.createElement("span");
+        const scoreSpan = document.createElement("span");
+        nameSpan.textContent = member + " ";
+        scoreSpan.textContent = Object.keys(d[name][member]).length + "/4";
+        scoreSpan.className = "score";
+        memberTd.appendChild(nameSpan);
+        memberTd.appendChild(scoreSpan);
 
         memberTd.className = Object.keys(d[name][member]).length >= 2 ? "yes" + Object.keys(d[name][member]).length : "no" + (4 - Object.keys(d[name][member]).length);
         markupBrowserSupport(chromeTd, d[name][member].Chrome);
