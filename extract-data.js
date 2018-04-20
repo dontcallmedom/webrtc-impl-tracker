@@ -12,6 +12,22 @@ const fetchError = (err, qualifier) => {
   }
 }
 
+const idlreducer = (impldata, name) => (idlacc, member) => {
+  if (member.name) {
+    idlacc[member.name] = impldata.filter(d => d.targetId === name + "#" + member.name).reduce((browseracc, d) => {
+      const [browsername, browserversion, os] = d.sourceId.split('_');
+      if (!browseracc[browsername]) {
+        browseracc[browsername] = [];
+      }
+      browseracc[browsername].push([browserversion, os]);
+      return browseracc;
+    }, {});
+  }
+  return idlacc;
+};
+
+
+
 if (crawlfile) {
   console.log(JSON.stringify(processCrawlData(require(crawlfile))));
 } else {
@@ -39,20 +55,14 @@ function processImplData(crawldata, impldata) {
     process.exit(2);
   }
   const interfaces = Object.keys(specData.idl.idlNames).filter(name => specData.idl.idlNames[name].type === "interface").reduce((acc, name) => {
-    acc[name] = specData.idl.idlNames[name].members.reduce((idlacc, member) => {
-      if (member.name) {
-        idlacc[member.name] = impldata.filter(d => d.targetId === name + "#" + member.name).reduce((browseracc, d) => {
-          const [browsername, browserversion, os] = d.sourceId.split('_');
-          if (!browseracc[browsername]) {
-            browseracc[browsername] = [];
-          }
-          browseracc[browsername].push([browserversion, os]);
-          return browseracc;
-        } , {});
-      }
-      return idlacc;
-    }, {});
+    acc[name] = specData.idl.idlNames[name].members.reduce(idlreducer(impldata, name), {});
     return acc;
   }, {});
+  Object.keys(specData.idl.idlExtendedNames).reduce((acc, name) => {
+    specData.idl.idlExtendedNames[name].forEach(partial => {
+      partial.members.reduce(idlreducer(impldata, name),  acc[name] || {});
+    });
+    return acc;
+  }, interfaces);
   return interfaces;
 }
