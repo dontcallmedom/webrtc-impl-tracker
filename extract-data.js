@@ -1,5 +1,4 @@
 const request = require("request");
-const data = require("./org.chromium.apis.web.ReleaseWebInterfaceJunction.json");
 
 const shortname = process.argv[2];
 const crawlfile  = process.argv[3]
@@ -31,7 +30,7 @@ const idlreducer = (impldata, name) => (idlacc, member) => {
 if (crawlfile) {
   console.log(JSON.stringify(processCrawlData(require(crawlfile))));
 } else {
-  request("https://tidoust.github.io/reffy-reports/whatwg/idl/webrtc.idl", (err, res, body) => {
+  request("https://tidoust.github.io/reffy-reports/whatwg/crawl.json", (err, res, body) => {
     fetchError(err, "spec crawl");
     console.log(JSON.stringify(processCrawlData(JSON.parse(body))));
   });
