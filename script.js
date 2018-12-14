@@ -4,7 +4,6 @@ const tbody = document.querySelector("tbody");
 const markupBrowserSupport = (td, data) => {
   td.className = data ? "yes" : "no";
   // This is probably too simple
-  console.log(data);
   if (data)
     td.textContent = data[0] + "+";
 };
