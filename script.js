@@ -4,8 +4,9 @@ const tbody = document.querySelector("tbody");
 const markupBrowserSupport = (td, data) => {
   td.className = data ? "yes" : "no";
   // This is probably too simple
+  console.log(data);
   if (data)
-    td.textContent = data[0][0] + "+";
+    td.textContent = data[0] + "+";
 };
 
 fetch(shortname + ".json")
@@ -36,10 +37,10 @@ fetch(shortname + ".json")
         memberTd.appendChild(scoreSpan);
 
         memberTd.className = Object.keys(d[name][member]).length >= 2 ? "yes" + Object.keys(d[name][member]).length : "no" + (4 - Object.keys(d[name][member]).length);
-        markupBrowserSupport(chromeTd, d[name][member].Chrome);
-        markupBrowserSupport(edgeTd, d[name][member].Edge);
-        markupBrowserSupport(firefoxTd, d[name][member].Firefox);
-        markupBrowserSupport(safariTd, d[name][member].Safari);
+        markupBrowserSupport(chromeTd, d[name][member].chrome);
+        markupBrowserSupport(edgeTd, d[name][member].edge);
+        markupBrowserSupport(firefoxTd, d[name][member].firefox);
+        markupBrowserSupport(safariTd, d[name][member].safari);
 
         container.appendChild(memberTd);
         container.appendChild(chromeTd);

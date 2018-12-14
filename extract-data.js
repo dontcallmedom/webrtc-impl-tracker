@@ -11,16 +11,25 @@ const fetchError = (err, qualifier) => {
   }
 }
 
+const browsers = ['firefox', 'chrome', 'edge', 'safari'];
+
 const idlreducer = (impldata, name) => (idlacc, member) => {
   if (member.name) {
-    idlacc[member.name] = impldata.filter(d => d.targetId === name + "#" + member.name).reduce((browseracc, d) => {
-      const [browsername, browserversion, os] = d.sourceId.split('_');
-      if (!browseracc[browsername]) {
-        browseracc[browsername] = [];
-      }
-      browseracc[browsername].push([browserversion, os]);
-      return browseracc;
-    }, {});
+    const browserdata = impldata.array.find(d => d.id === name + "#" + member.name);
+    if (!browserdata) {
+      return idlacc;
+    }
+    idlacc[member.name] = Object.keys(browserdata)
+      .filter(k => browsers.some(b => k.startsWith(b))).reduce((browseracc, browserkey) => {
+        const browserentry = browserdata[browserkey];
+        const [browser,] = browserkey.split('_');
+        const [, browsername, browserversion] = browser.match(/([^0-9]*)([0-9]*)/)
+        if (!browseracc[browsername]) {
+          browseracc[browsername] = [];
+        }
+        browseracc[browsername].push(browserversion);
+        return browseracc;
+      }, {})
   }
   return idlacc;
 };
@@ -30,7 +39,7 @@ const idlreducer = (impldata, name) => (idlacc, member) => {
 if (crawlfile) {
   console.log(JSON.stringify(processCrawlData(require(crawlfile))));
 } else {
-  request("https://tidoust.github.io/reffy-reports/whatwg/crawl.json", (err, res, body) => {
+  request.post("https://tidoust.github.io/reffy-reports/whatwg/crawl.json", (err, res, body) => {
     fetchError(err, "spec crawl");
     console.log(JSON.stringify(processCrawlData(JSON.parse(body))));
   });
@@ -40,7 +49,7 @@ function processCrawlData(crawldata) {
   if (implfile) {
     return processImplData(crawldata, require(implfile));
   } else {
-    request("https://storage.googleapis.com/web-api-confluence-data-cache/latest/json/org.chromium.apis.web.ReleaseWebInterfaceJunction.json", (err, res, body) => {
+    request("https://web-confluence.appspot.com/compatDAO:select", (err, res, body) => {
       fetchError(err, "api implementation");
       return processImplData(crawldata, JSON.parse(body));
     });
