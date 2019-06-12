@@ -29,18 +29,22 @@ fetch(shortname + ".json")
 
         const nameSpan = document.createElement("span");
         const scoreSpan = document.createElement("span");
-        nameSpan.textContent = member + " ";
-        scoreSpan.textContent = Object.keys(d[name][member]).length + "/4";
         scoreSpan.className = "score";
+        nameSpan.textContent = member + " ";
+        if (!d[name][member]) {
+          scoreSpan.textContent = "?/4";
+          memberTd.className = "unknown";
+        } else {
+          scoreSpan.textContent = Object.keys(d[name][member]).length + "/4";
+          memberTd.className = Object.keys(d[name][member]).length >= 2 ? "yes" + Object.keys(d[name][member]).length : "no" + (4 - Object.keys(d[name][member]).length);
+          markupBrowserSupport(chromeTd, d[name][member].chrome);
+          markupBrowserSupport(edgeTd, d[name][member].edge);
+          markupBrowserSupport(firefoxTd, d[name][member].firefox);
+          markupBrowserSupport(safariTd, d[name][member].safari);
+        }
+
         memberTd.appendChild(nameSpan);
         memberTd.appendChild(scoreSpan);
-
-        memberTd.className = Object.keys(d[name][member]).length >= 2 ? "yes" + Object.keys(d[name][member]).length : "no" + (4 - Object.keys(d[name][member]).length);
-        markupBrowserSupport(chromeTd, d[name][member].chrome);
-        markupBrowserSupport(edgeTd, d[name][member].edge);
-        markupBrowserSupport(firefoxTd, d[name][member].firefox);
-        markupBrowserSupport(safariTd, d[name][member].safari);
-
         container.appendChild(memberTd);
         container.appendChild(chromeTd);
         container.appendChild(edgeTd);

@@ -17,6 +17,7 @@ const idlreducer = (impldata, name) => (idlacc, member) => {
   if (member.name) {
     const browserdata = impldata.array.find(d => d.id === name + "#" + member.name);
     if (!browserdata) {
+      idlacc[member.name] = null;
       return idlacc;
     }
     idlacc[member.name] = Object.keys(browserdata)
