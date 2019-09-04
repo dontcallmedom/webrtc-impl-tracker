@@ -38,11 +38,11 @@ const idlreducer = (impldata, name) => (idlacc, member) => {
 
 
 if (crawlfile) {
-  console.log(JSON.stringify(processCrawlData(require(crawlfile))));
+  console.log(JSON.stringify(processCrawlData(require(crawlfile)), null, 2));
 } else {
   request.post("https://tidoust.github.io/reffy-reports/whatwg/crawl.json", (err, res, body) => {
     fetchError(err, "spec crawl");
-    console.log(JSON.stringify(processCrawlData(JSON.parse(body))));
+    console.log(JSON.stringify(processCrawlData(JSON.parse(body)), null, 2));
   });
 }
 
