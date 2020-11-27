@@ -6,7 +6,7 @@ let implData;
 if (implfile) {
   implData = require(implfile);
 }
-const browsers = ['firefox', 'chrome', 'edge', 'safari'];
+const browsers = ['firefox', 'chrome', 'safari'];
 
 const idlreducer = (impldata, name) => (idlacc, member) => {
   if (member.name) {
