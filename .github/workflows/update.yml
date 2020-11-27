@@ -18,7 +18,7 @@ jobs:
         node-version: 12.x
     - name: Setup dependencies
       run: |
-        npm ci --production
+        npm install
     - name: Run extract-data.js
       run: node extract-data.js
     - name: Commit changes
