@@ -1,16 +1,11 @@
-const request = require("request");
+const fetch = require("node-fetch");
 
 const shortname = process.argv[2];
-const crawlfile  = process.argv[3]
-const implfile = process.argv[4];
-
-const fetchError = (err, qualifier) => {
-  if (err) {
-    console.error("Error while fetching " + qualifier +" data: " + err);
-    process.exit(2);
-  }
+const implfile = process.argv[3];
+let implData;
+if (implfile) {
+  implData = require(implfile);
 }
-
 const browsers = ['firefox', 'chrome', 'edge', 'safari'];
 
 const idlreducer = (impldata, name) => (idlacc, member) => {
@@ -36,42 +31,22 @@ const idlreducer = (impldata, name) => (idlacc, member) => {
 };
 
 
-
-if (crawlfile) {
-  console.log(JSON.stringify(processCrawlData(require(crawlfile)), null, 2));
-} else {
-  request.post("https://tidoust.github.io/reffy-reports/whatwg/crawl.json", (err, res, body) => {
-    fetchError(err, "spec crawl");
-    console.log(JSON.stringify(processCrawlData(JSON.parse(body)), null, 2));
-  });
-}
-
-function processCrawlData(crawldata) {
-  if (implfile) {
-    return processImplData(crawldata, require(implfile));
-  } else {
-    request("https://web-confluence.appspot.com/compatDAO:select", (err, res, body) => {
-      fetchError(err, "api implementation");
-      return processImplData(crawldata, JSON.parse(body));
-    });
+(async function(shortname, impldata) {
+  const specData = await fetch("https://w3c.github.io/webref/ed/idlparsed/" + shortname + ".json").then(r => r.json());
+  if (!impldata) {
+    impldata = await fetch("https://web-confluence.appspot.com/compatDAO:select", {method: "post", body: "{}", headers: {"Content-Type": "application/json"}}).then(r => r.json());
   }
-}
-
-function processImplData(crawldata, impldata) {
-  const specData = crawldata.results.find(s => s.shortname === shortname);
-  if (!specData) {
-    console.error("Could not find data for a spec with shortname " + shortname);
-    process.exit(2);
-  }
-  const interfaces = Object.keys(specData.idl.idlNames).filter(name => specData.idl.idlNames[name].type === "interface").reduce((acc, name) => {
-    acc[name] = specData.idl.idlNames[name].members.reduce(idlreducer(impldata, name), {});
+    const interfaces = Object.keys(specData.idlparsed.idlNames).filter(name => specData.idlparsed.idlNames[name].type === "interface").reduce((acc, name) => {
+    acc[name] = specData.idlparsed.idlNames[name].members.reduce(idlreducer(impldata, name), {});
     return acc;
   }, {});
-  Object.keys(specData.idl.idlExtendedNames).reduce((acc, name) => {
-    specData.idl.idlExtendedNames[name].forEach(partial => {
-      partial.members.reduce(idlreducer(impldata, name),  acc[name] || {});
+  Object.keys(specData.idlparsed.idlExtendedNames).reduce((acc, name) => {
+    specData.idlparsed.idlExtendedNames[name].forEach(partial => {
+      acc[name] = partial.members.reduce(idlreducer(impldata, name),  acc[name] || {});
+      return acc;
     });
     return acc;
   }, interfaces);
-  return interfaces;
-}
+  console.log(JSON.stringify( interfaces, null, 2));
+
+})(shortname, implData);
