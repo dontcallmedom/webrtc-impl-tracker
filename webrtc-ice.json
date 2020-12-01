@@ -1,0 +1,10 @@
+{
+  "RTCIceTransport": {
+    "gather": null,
+    "start": {},
+    "stop": {},
+    "addRemoteCandidate": {},
+    "onerror": null,
+    "onicecandidate": null
+  }
+}

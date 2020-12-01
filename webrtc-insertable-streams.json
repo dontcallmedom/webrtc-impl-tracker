@@ -1,0 +1,19 @@
+{
+  "RTCEncodedVideoFrame": {
+    "type": null,
+    "timestamp": null,
+    "data": null,
+    "getMetadata": null
+  },
+  "RTCEncodedAudioFrame": {
+    "timestamp": null,
+    "data": null,
+    "getMetadata": null
+  },
+  "RTCRtpSender": {
+    "createEncodedStreams": null
+  },
+  "RTCRtpReceiver": {
+    "createEncodedStreams": null
+  }
+}
