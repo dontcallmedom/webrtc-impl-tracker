@@ -1,19 +1,64 @@
 {
   "RTCEncodedVideoFrame": {
-    "type": null,
-    "timestamp": null,
-    "data": null,
-    "getMetadata": null
+    "type": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    },
+    "timestamp": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    },
+    "data": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    },
+    "getMetadata": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    }
   },
   "RTCEncodedAudioFrame": {
-    "timestamp": null,
-    "data": null,
-    "getMetadata": null
+    "timestamp": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    },
+    "data": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    },
+    "getMetadata": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    }
   },
   "RTCRtpSender": {
-    "createEncodedStreams": null
+    "createEncodedStreams": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    }
   },
   "RTCRtpReceiver": {
-    "createEncodedStreams": null
+    "createEncodedStreams": {
+      "chrome": [
+        "86",
+        "87"
+      ]
+    }
   }
 }
