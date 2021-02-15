@@ -45,13 +45,18 @@
       ]
     }
   },
+  "SFrameTransform": {
+    "setEncryptionKey": null
+  },
+  "RTCRtpScriptTransform": {},
   "RTCRtpSender": {
     "createEncodedStreams": {
       "chrome": [
         "86",
         "87"
       ]
-    }
+    },
+    "transform": null
   },
   "RTCRtpReceiver": {
     "createEncodedStreams": {
@@ -59,6 +64,7 @@
         "86",
         "87"
       ]
-    }
+    },
+    "transform": null
   }
 }
