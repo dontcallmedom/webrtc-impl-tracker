@@ -1,4 +1,7 @@
 {
+  "SFrameTransform": {
+    "setEncryptionKey": null
+  },
   "RTCEncodedVideoFrame": {
     "type": {
       "chrome": [
@@ -45,8 +48,13 @@
       ]
     }
   },
-  "SFrameTransform": {
-    "setEncryptionKey": null
+  "RTCTransformEvent": {
+    "transformer": null
+  },
+  "RTCRtpScriptTransformer": {
+    "readable": null,
+    "writable": null,
+    "options": null
   },
   "RTCRtpScriptTransform": {},
   "RTCRtpSender": {
@@ -66,5 +74,8 @@
       ]
     },
     "transform": null
+  },
+  "DedicatedWorkerGlobalScope": {
+    "onrtctransform": null
   }
 }
