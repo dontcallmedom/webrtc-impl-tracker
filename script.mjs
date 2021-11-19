@@ -26,7 +26,7 @@ function showError(err) {
   const errLog = document.createElement("div");
   errLog.id = "errorlog";
   errLog.textContent = err;
-  document.querySelector("table").insertBefore(errLog);
+  document.body.insertBefore(errLog, document.querySelector("table"));
 }
 
 function showSpec(shortname) {
