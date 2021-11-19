@@ -1,3 +1,5 @@
+import fetchIdlImplData from './lib/fetch-idl-implementation-data.mjs';
+
 let shortname = location.search.slice(1);
 
 if (!shortname) {
@@ -26,8 +28,7 @@ function showError(err) {
 }
 
 function showSpec(shortname) {
-  fetch(shortname + ".json")
-    .then(r => r.json())
+  fetchIdlImplData(shortname)
     .then(({results: d, error: err}) => {
       if (document.getElementById("errorlog")) {
           document.getElementById("errorlog").remove();
