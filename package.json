@@ -1,6 +1,8 @@
 {
-  "dependencies": {
-    "node-fetch": "^2.6.1",
-    "pajv": "^1.2.0"
-  }
+  "name": "idl-implementation-tracker",
+  "files": [
+    "lib/fetch-idl-implementation-data.mjs"
+  ],
+  "type": "module"
+  "main": "lib/fetch-idl-implementation-data.mjs"
 }
