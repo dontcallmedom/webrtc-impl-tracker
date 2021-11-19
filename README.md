@@ -1,4 +1,4 @@
-This repo gathers data from the [Web Confluence project](https://web-confluence.appspot.com/) and combines them with IDL info from [webref](https://github.com/w3c/webref/tree/master/ed/idlparsed) to build overviews of which interfaces/methods/attributes of the WebRTC WG specifications have been implemented in which browsers.
+This repo gathers data from the WPT idlharness results and combines them with IDL info from [webref](https://github.com/w3c/webref/tree/master/ed/idlparsed) to build overviews of which interfaces/methods/attributes of the WebRTC WG specifications have been implemented in which browsers.
 
 [WebRTC](https://dontcallmedom.github.io/webrtc-impl-tracker/?webrtc)
 [getUserMedia)(https://dontcallmedom.github.io/webrtc-impl-tracker/?mediacapture-streams)
