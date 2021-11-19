@@ -1,6 +1,8 @@
 import fetchIdlImplData from './lib/fetch-idl-implementation-data.mjs';
 
-let selectedShortname = location.search.slice(1);
+const url = new URL(window.location);
+
+let selectedShortname = url.searchParams.get("shortname");
 
 if (!selectedShortname) {
   selectedShortname = "webrtc";
@@ -96,6 +98,9 @@ fetch("https://w3c.github.io/webref/ed/index.json").then(r => r.json()).then(({r
   });
   selector.addEventListener("change", () => {
     tbody.innerHTML = "";
+    url.searchParams.set('shortname', selector.value);
+    window.history.pushState({}, document.querySelector("title") + ":" + selector.value, url);
+
     showSpec(selector.value);
   });
 });
