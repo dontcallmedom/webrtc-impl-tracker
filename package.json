@@ -3,6 +3,6 @@
   "files": [
     "lib/fetch-idl-implementation-data.mjs"
   ],
-  "type": "module"
+  "type": "module",
   "main": "lib/fetch-idl-implementation-data.mjs"
 }
