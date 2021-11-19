@@ -1,81 +1,154 @@
 {
-  "SFrameTransform": {
-    "setEncryptionKey": null
-  },
-  "RTCEncodedVideoFrame": {
-    "type": {
-      "chrome": [
-        "86",
-        "87"
-      ]
+  "results": {
+    "SFrameTransform": {
+      "__interface": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "setEncryptionKey": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "onerror": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      }
     },
-    "timestamp": {
-      "chrome": [
-        "86",
-        "87"
-      ]
+    "SFrameTransformErrorEvent": {
+      "__interface": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "errorType": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "keyID": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "frame": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      }
     },
-    "data": {
-      "chrome": [
-        "86",
-        "87"
-      ]
+    "RTCEncodedVideoFrame": {
+      "__interface": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "type": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "timestamp": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "data": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "getMetadata": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      }
     },
-    "getMetadata": {
-      "chrome": [
-        "86",
-        "87"
-      ]
+    "RTCEncodedAudioFrame": {
+      "__interface": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "timestamp": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "data": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "getMetadata": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      }
+    },
+    "RTCTransformEvent": {
+      "__interface": {
+        "chrome": "PASS",
+        "firefox": "PASS",
+        "safari": "PASS"
+      },
+      "transformer": {
+        "chrome": "N/A",
+        "firefox": "N/A",
+        "safari": "N/A"
+      }
+    },
+    "RTCRtpScriptTransformer": {
+      "__interface": {
+        "chrome": "PASS",
+        "firefox": "PASS",
+        "safari": "PASS"
+      },
+      "readable": {
+        "chrome": "N/A",
+        "firefox": "N/A",
+        "safari": "N/A"
+      },
+      "writable": {
+        "chrome": "N/A",
+        "firefox": "N/A",
+        "safari": "N/A"
+      },
+      "options": {
+        "chrome": "N/A",
+        "firefox": "N/A",
+        "safari": "N/A"
+      }
+    },
+    "RTCRtpScriptTransform": {
+      "__interface": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      }
+    },
+    "RTCRtpSender": {
+      "transform": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "PASS"
+      }
+    },
+    "RTCRtpReceiver": {
+      "transform": {
+        "chrome": "FAIL",
+        "firefox": "FAIL",
+        "safari": "PASS"
+      }
+    },
+    "DedicatedWorkerGlobalScope": {
+      "onrtctransform": {
+        "chrome": "N/A",
+        "firefox": "N/A",
+        "safari": "N/A"
+      }
     }
-  },
-  "RTCEncodedAudioFrame": {
-    "timestamp": {
-      "chrome": [
-        "86",
-        "87"
-      ]
-    },
-    "data": {
-      "chrome": [
-        "86",
-        "87"
-      ]
-    },
-    "getMetadata": {
-      "chrome": [
-        "86",
-        "87"
-      ]
-    }
-  },
-  "RTCTransformEvent": {
-    "transformer": null
-  },
-  "RTCRtpScriptTransformer": {
-    "readable": null,
-    "writable": null,
-    "options": null
-  },
-  "RTCRtpScriptTransform": {},
-  "RTCRtpSender": {
-    "createEncodedStreams": {
-      "chrome": [
-        "86",
-        "87"
-      ]
-    },
-    "transform": null
-  },
-  "RTCRtpReceiver": {
-    "createEncodedStreams": {
-      "chrome": [
-        "86",
-        "87"
-      ]
-    },
-    "transform": null
-  },
-  "DedicatedWorkerGlobalScope": {
-    "onrtctransform": null
   }
 }

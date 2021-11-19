@@ -1,5 +1,4 @@
 {
-  "RTCDataChannel": {
-    "priority": null
-  }
+  "results": {},
+  "error": "No idlharness tests found for webrtc-priority"
 }

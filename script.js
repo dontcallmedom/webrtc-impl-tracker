@@ -7,16 +7,35 @@ showSpec(shortname);
 const tbody = document.querySelector("tbody");
 
 const markupBrowserSupport = (td, data) => {
-  td.className = data ? "yes" : "no";
-  // This is probably too simple
-  if (data)
-    td.textContent = data[0] + "+";
+  if (data === "PASS") {
+    td.className = "yes";
+    td.textContent = "y";
+  } else if (data === "FAIL") {
+    td.className = "no";
+    td.textContent = "n";
+  } else {
+    td.textContent = "N/A";
+  }
 };
+
+function showError(err) {
+  const errLog = document.createElement("div");
+  errLog.id = "errorlog";
+  errLog.textContent = err;
+  document.body.appendChild(errLog);
+}
 
 function showSpec(shortname) {
   fetch(shortname + ".json")
     .then(r => r.json())
-    .then(d => {
+    .then(({results: d, error: err}) => {
+      if (document.getElementById("errorlog")) {
+          document.getElementById("errorlog").remove();
+      }
+      if (err) {
+        showError(err);
+        return;
+      }
       Object.keys(d).forEach(name => {
         const tr = document.createElement("tr");
 
@@ -58,7 +77,7 @@ function showSpec(shortname) {
         });
       });
     })
-    .catch(err => console.error(err));
+    .catch(err => showError(err.message));
 }
 
 fetch("specs.json").then(r => r.json()).then(shortnames =>{

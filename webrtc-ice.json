@@ -1,10 +1,4 @@
 {
-  "RTCIceTransport": {
-    "gather": null,
-    "start": {},
-    "stop": {},
-    "addRemoteCandidate": {},
-    "onerror": null,
-    "onicecandidate": null
-  }
+  "results": {},
+  "error": "No idlharness tests found for webrtc-ice"
 }

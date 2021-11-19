@@ -1,35 +1,11 @@
 {
-  "MediaStreamTrack": {
-    "contentHint": {
-      "chrome": [
-        "70",
-        "70",
-        "70",
-        "71",
-        "71",
-        "72",
-        "73",
-        "74",
-        "74",
-        "75",
-        "76",
-        "77",
-        "78",
-        "79",
-        "80",
-        "81",
-        "83",
-        "84",
-        "85",
-        "86",
-        "87"
-      ],
-      "safari": [
-        "12",
-        "12",
-        "13",
-        "14"
-      ]
+  "results": {
+    "MediaStreamTrack": {
+      "contentHint": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "PASS"
+      }
     }
   }
 }
