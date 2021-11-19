@@ -34,7 +34,6 @@ function showSpec(shortname) {
       }
       if (err) {
         showError(err);
-        return;
       }
       Object.keys(d).forEach(name => {
         const tr = document.createElement("tr");
@@ -59,8 +58,10 @@ function showSpec(shortname) {
           scoreSpan.textContent = "?/3";
             memberTd.className = "unknown";
           } else {
-            scoreSpan.textContent = Object.keys(d[name][member]).length + "/3";
-            memberTd.className = Object.keys(d[name][member]).length >= 2 ? "yes" + Object.keys(d[name][member]).length : "no" + (3 - Object.keys(d[name][member]).length);
+            const scorePass = Object.values(d[name][member]).filter(x => x === "PASS").length;
+            const scoreFail = Object.values(d[name][member]).filter(x => x === "FAIL").length;
+            scoreSpan.textContent = (scorePass + scoreFail === 3) ? scorePass + "/3" : " (N/A)";
+            memberTd.className = scorePass >= 2 ? "yes" + scorePass : "no" + scoreFail;
             markupBrowserSupport(chromeTd, d[name][member].chrome);
             markupBrowserSupport(firefoxTd, d[name][member].firefox);
             markupBrowserSupport(safariTd, d[name][member].safari);
@@ -83,6 +84,7 @@ function showSpec(shortname) {
 fetch("specs.json").then(r => r.json()).then(shortnames =>{
   const selector = document.getElementById("spec");
   for (let s of shortnames) {
+    s = s.tr ?? s;
     const opt = document.createElement("option");
     opt.textContent = s;
     if (s === shortname) {
