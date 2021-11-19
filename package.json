@@ -1,5 +1,6 @@
 {
   "name": "idl-implementation-tracker",
+  "version": "1.0.0",
   "files": [
     "lib/fetch-idl-implementation-data.mjs"
   ],
