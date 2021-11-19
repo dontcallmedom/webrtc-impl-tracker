@@ -1,9 +1,12 @@
 {
   "name": "idl-implementation-tracker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "files": [
     "lib/fetch-idl-implementation-data.mjs"
   ],
   "type": "module",
-  "main": "lib/fetch-idl-implementation-data.mjs"
+  "main": "lib/fetch-idl-implementation-data.mjs",
+  "dependencies": {
+    "node-fetch": "^3.1.0"
+  }
 }
