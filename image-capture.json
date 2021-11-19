@@ -1,4 +1,36 @@
 {
-  "results": {},
-  "error": "No idlharness tests found for image-capture"
+  "results": {
+    "ImageCapture": {
+      "__interface": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "takePhoto": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "getPhotoCapabilities": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "getPhotoSettings": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "grabFrame": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      },
+      "track": {
+        "chrome": "PASS",
+        "firefox": "FAIL",
+        "safari": "FAIL"
+      }
+    }
+  }
 }

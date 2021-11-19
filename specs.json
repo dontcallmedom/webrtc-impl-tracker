@@ -1,1 +1,1 @@
-["webrtc", "mediacapture-streams", "audio-output", "mediastream-recording", "mediacapture-fromelement", "screen-capture", "image-capture", "webrtc-priority", "mst-content-hint", "webrtc-ice", "webrtc-encoded-transform"]
+["webrtc", "mediacapture-streams", "audio-output", {"tr": "mediastream-recording", "wpt": "mediacapture-record"}, "mediacapture-fromelement", "screen-capture", {"tr":"image-capture", "wpt": "mediacapture-image"}, "webrtc-priority", "mst-content-hint", "webrtc-ice", "webrtc-encoded-transform"]
