@@ -1,11 +1,11 @@
 import fetchIdlImplData from './lib/fetch-idl-implementation-data.mjs';
 
-let shortname = location.search.slice(1);
+let selectedShortname = location.search.slice(1);
 
-if (!shortname) {
-  shortname = "webrtc";
+if (!selectedShortname) {
+  selectedShortname = "webrtc";
 }
-showSpec(shortname);
+showSpec(selectedShortname);
 const tbody = document.querySelector("tbody");
 
 const markupBrowserSupport = (td, data) => {
@@ -82,17 +82,18 @@ function showSpec(shortname) {
     .catch(err => showError(err.message));
 }
 
-fetch("specs.json").then(r => r.json()).then(shortnames =>{
-  const selector = document.getElementById("spec");
-  for (let s of shortnames) {
-    s = s.tr ?? s;
+const selector = document.getElementById("spec");
+
+fetch("https://w3c.github.io/webref/ed/index.json").then(r => r.json()).then(({results: specs}) => {
+  specs.filter(s => s.idlparsed).forEach(s => {
     const opt = document.createElement("option");
-    opt.textContent = s;
-    if (s === shortname) {
+    opt.value = s.shortname;
+    opt.textContent = s.shortTitle;
+    if (s.shortname === selectedShortname) {
       opt.selected = true;
     }
     selector.appendChild(opt);
-  }
+  });
   selector.addEventListener("change", () => {
     tbody.innerHTML = "";
     showSpec(selector.value);
